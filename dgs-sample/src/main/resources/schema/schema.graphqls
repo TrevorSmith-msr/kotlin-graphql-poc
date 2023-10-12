@@ -1,0 +1,68 @@
+type Query {
+  users: [User!]!
+  user(id: UUID!): User
+  searchUsers(criteria: UserSearchCriteria): [User!]!
+  groups: [Group!]!
+  group(id: UUID!): Group
+}
+
+type Mutation {
+  inviteUser(userInvite: UserInvite!): InviteUserResponse
+  deleteUser(id: UUID!): DeleteUserResponse
+}
+
+type MutationResult {
+  code: String!
+  success: Boolean!
+  message: String!
+}
+
+interface MutationResponse {
+  result: MutationResult!
+}
+
+type User {
+  id: UUID!
+  name: String!
+  groups: [Group!]!
+  createdAt: DateTime!
+}
+
+type Group {
+  id: UUID!
+  name: String!
+  createdAt: DateTime!
+}
+
+input UserSearchCriteria {
+  name: String!
+}
+
+input GroupSearchCriteria {
+  id: UUID
+  name: String
+}
+
+input UserInvite {
+  name: String!
+  groupIds: [UUID!]!
+}
+
+type InviteUserResponse implements MutationResponse {
+  result: MutationResult!
+  user: User
+}
+
+type DeleteUserResponse implements MutationResponse {
+  result: MutationResult!
+  user: User
+}
+
+scalar DateTime
+@specifiedBy(url:
+"https://scalars.graphql.org/andimarek/date-time.html"
+)
+scalar UUID
+@specifiedBy(url:
+"https://tools.ietf.org/html/rfc4122"
+)

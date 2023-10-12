@@ -1,0 +1,72 @@
+[versions]
+kotlin = "1.9.10"
+spring-boot = "3.1.4"
+kotest = "5.7.2"
+ktor = "2.3.5"
+graphql-kotlin = "7.0.1"
+kgraphql = "0.19.0"
+logback = "1.4.11"
+
+[libraries]
+spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
+spring-boot-starter-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+
+jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
+jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310" }
+
+ktor-client-java = { module = "io.ktor:ktor-client-java", version.ref = "ktor" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-jackson = { module = "io.ktor:ktor-serialization-jackson", version.ref = "ktor" }
+ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
+ktor-server-netty = { module = "io.ktor:ktor-server-netty", version.ref = "ktor" }
+
+graphql-java-extended-scalars = { module = "com.graphql-java:graphql-java-extended-scalars", version = "21.0" }
+graphql-kotlin-schema-generator = { module = "com.expediagroup:graphql-kotlin-schema-generator", version.ref = "graphql-kotlin" }
+graphql-kotlin-ktor-client = { module = "com.expediagroup:graphql-kotlin-ktor-client", version.ref = "graphql-kotlin" }
+graphql-kotlin-ktor-server = { module = "com.expediagroup:graphql-kotlin-ktor-server", version.ref = "graphql-kotlin" }
+graphql-kotlin-spring-server = { module = "com.expediagroup:graphql-kotlin-spring-server", version.ref = "graphql-kotlin" }
+
+kgraphql = { module = "com.apurebase:kgraphql", version.ref = "kgraphql" }
+kgraphql-ktor = { module = "com.apurebase:kgraphql-ktor", version.ref = "kgraphql" }
+
+kotlin-logging = { module = "io.github.oshai:kotlin-logging", version = "5.1.0" }
+logback = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
+
+kotest-bom = { module = "io.kotest:kotest-bom", version.ref = "kotest" }
+kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5" }
+mockk = { module = "io.mockk:mockk", version = "1.13.8" }
+
+kotest-assertions-json-jvm = { module = "io.kotest:kotest-assertions-json-jvm" }
+kotest-assertions-ktor = { module = "io.kotest.extensions:kotest-assertions-ktor", version = "2.0.0" }
+ktor-server-test-host = { module = "io.ktor:ktor-server-test-host", version.ref = "ktor" }
+
+kotest-extensions-spring = { module = "io.kotest.extensions:kotest-extensions-spring", version = "1.1.3" }
+springmockk = { module = "com.ninja-squad:springmockk", version = "4.0.2" }
+
+[bundles]
+kotest-ktor = [
+    "kotest-runner-junit5",
+    "mockk",
+    "kotest-assertions-ktor",
+    "kotest-assertions-json-jvm",
+    "ktor-server-test-host",
+    "ktor-client-content-negotiation",
+    "ktor-serialization-jackson",
+    "jackson-module-kotlin"
+]
+
+kotest-spring = [
+    "kotest-runner-junit5",
+    "mockk",
+    "kotest-assertions-json-jvm",
+    "kotest-extensions-spring",
+    "spring-boot-starter-test",
+    "springmockk"
+]
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
